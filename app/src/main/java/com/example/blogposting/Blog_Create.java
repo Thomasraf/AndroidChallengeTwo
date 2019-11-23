@@ -18,6 +18,7 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
     private EditText title;
     private EditText description;
     private Spinner category;
+    private String currentItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +50,17 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categories, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                target);
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+        currentItem = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(), currentItem, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -70,7 +72,7 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = Long.toString(tsLong);
         //String category, String description, long timestamp, String title
-        Post post = new Post(category.getSelectedItem().toString(),description.getText().toString(),ts,title.getText().toString());
+        Post post = new Post(currentItem,description.getText().toString(),ts,title.getText().toString());
         new Model().addPost(post, new Model.DataStatus() {
 
             @Override
