@@ -3,14 +3,14 @@ package com.example.blogposting;
 public class Post {
     private String category;
     private String description;
-    private String timestamp;
+    private long timestamp;
     private String title;
 
     public Post() {
 
     }
 
-    public Post(String category, String description, String timestamp, String title) {
+    public Post(String category, String description, long timestamp, String title) {
         this.category = category;
         this.description = description;
         this.timestamp = timestamp;
@@ -33,11 +33,11 @@ public class Post {
         this.description = description;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 

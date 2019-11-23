@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void DataIsLoaded(List<Post> posts, List<String> keys) {
-                System.out.println(posts.get(0));
+                System.out.println(posts.get(0).getTitle());
             }
 
             @Override
