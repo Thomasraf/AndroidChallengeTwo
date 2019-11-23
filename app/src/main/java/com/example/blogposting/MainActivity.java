@@ -1,22 +1,41 @@
 package com.example.blogposting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerArea;
+    private PostAdapter adapter;
+    private RecyclerView.LayoutManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //(1) The RecyclerView is where the recycling will be done. In this case, this has already
+        //    been declared in the activity_main.xml
+        recyclerArea = findViewById(R.id.recyclerArea);
+
+        //(2) The LinearLayoutManager is in-charge of the layout of the RecyclerView
+        manager = new LinearLayoutManager(this);
+        recyclerArea.setLayoutManager(manager);
+
         new Model().readPosts(new Model.DataStatus(){
 
             @Override
             public void DataIsLoaded(List<Post> posts, List<String> keys) {
-                System.out.println(posts.get(0).getTitle());
+                adapter = new PostAdapter((ArrayList) posts);
+                recyclerArea.setAdapter(adapter);
             }
 
             @Override

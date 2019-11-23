@@ -33,8 +33,8 @@ public class Post {
         this.description = description;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public String getTimestamp() {
+        return Long.toString(timestamp);
     }
 
     public void setTimestamp(long timestamp) {
