@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "661453664673",
+    "firebase_url": "https://androidchallengetwo.firebaseio.com",
+    "project_id": "androidchallengetwo",
+    "storage_bucket": "androidchallengetwo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661453664673:android:cfe1f6638d912544cfdbe0",
+        "android_client_info": {
+          "package_name": "com.example.blogposting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661453664673-p4h4ehanoqk8hfrp8d8pf599e72k2iu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtaMTaw0Kg_XNP11-_2vymFxJ2aN5nkUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661453664673-p4h4ehanoqk8hfrp8d8pf599e72k2iu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

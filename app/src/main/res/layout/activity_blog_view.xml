@@ -30,7 +30,7 @@
         android:layout_height="33dp"
         android:text="[BLOG TITLE]"
         android:textAlignment="center"
-        android:textSize="24"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="87dp"
         tools:layout_editor_absoluteY="143dp" />
 
@@ -40,7 +40,7 @@
         android:layout_height="32dp"
         android:text="[Categories]"
         android:textAlignment="center"
-        android:textSize="18"
+        android:textSize="18sp"
         tools:layout_editor_absoluteX="26dp"
         tools:layout_editor_absoluteY="184dp" />
 
