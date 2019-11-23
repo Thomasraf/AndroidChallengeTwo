@@ -33,7 +33,7 @@ public class PostHolder extends RecyclerView.ViewHolder{
     public PostHolder(View view) {
         super(view);
 
-        title = view.findViewById(R.id.title);
+        title = view.findViewById(R.id.name);
         desc = view.findViewById(R.id.desc);
         category = view.findViewById(R.id.category);
         timestamp = view.findViewById(R.id.timestamp);

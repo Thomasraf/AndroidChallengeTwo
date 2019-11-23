@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Blog_Create extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -23,9 +24,32 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_blog__create);
 
         category = findViewById(R.id.category);
-        title = findViewById(R.id.title);
+        title = findViewById(R.id.name);
         description = findViewById(R.id.description);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categories, android.R.layout.simple_spinner_item);
+        final List<String> target = new ArrayList<String>();
+        new Model().readCategories(new Model.DataStatusCategory(){
+
+            @Override
+            public void DataIsLoaded(List<String> categories, List<String> keys) {
+                target.addAll(categories);
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_checked, target);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
@@ -71,4 +95,5 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
         });
         finish();
     }
+
 }

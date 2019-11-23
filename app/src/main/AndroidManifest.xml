@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Blog_Delete"></activity>
         <activity android:name=".Blog_Create"></activity>
+        <activity android:name=".Blog_Create_Category"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="createCategory"
             android:text="create category" />
 
     </LinearLayout>
@@ -68,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="createPost"
             android:text="View By Date" />
 
         <Button

@@ -62,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void createCategory(View view) {
+        Intent intent = new Intent(MainActivity.this, Blog_Create_Category.class);
+        startActivity(intent);
+    }
+
     public void deletePost(View view) {
 
     }
