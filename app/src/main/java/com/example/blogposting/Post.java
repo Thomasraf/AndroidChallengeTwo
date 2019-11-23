@@ -1,6 +1,6 @@
 package com.example.blogposting;
 
-public class Post {
+public class Post implements Comparable{
     private String category;
     private String description;
     private String timestamp;
@@ -43,6 +43,11 @@ public class Post {
     public String getTimestamp() {
         return timestamp;
     }
+
+    public long getLongTimestamp() {
+        return Long.parseLong(timestamp);
+    }
+
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
@@ -58,4 +63,16 @@ public class Post {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public int compareTo(Object o) {
+        long compareTs = Long.parseLong(((Post)o).getTimestamp());
+
+        /* For Ascending order*/
+        return (int) Math.abs(Long.parseLong(this.timestamp) - compareTs);
+
+        /* For Descending order do like this */
+        //return compareage-this.studentage;
+    }
+
 }

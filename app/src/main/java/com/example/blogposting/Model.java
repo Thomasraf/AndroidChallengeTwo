@@ -90,6 +90,16 @@ public class Model {
         });
     }
 
+    public void deletePost(Post post, final DataStatus dataStatus){
+        String key = mReference.push().getKey();
+        mReference.child(key).setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                dataStatus.DataIsInserted();
+            }
+        });
+    }
+
     public void addCategory(Category category, final DataStatus dataStatus){
         String key = mReferenceCategory.push().getKey();
         mReferenceCategory.child(key).setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {

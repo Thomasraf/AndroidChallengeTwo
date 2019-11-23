@@ -49,7 +49,7 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_checked, target);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
@@ -70,7 +70,7 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = Long.toString(tsLong);
         //String category, String description, long timestamp, String title
-        Post post = new Post((String)category.getSelectedItem(),description.getText().toString(),ts,title.getText().toString());
+        Post post = new Post(category.getSelectedItem().toString(),description.getText().toString(),ts,title.getText().toString());
         new Model().addPost(post, new Model.DataStatus() {
 
             @Override

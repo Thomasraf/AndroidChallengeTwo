@@ -69,12 +69,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="viewByDate"
             android:text="View By Date" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="viewByCategory"
             android:text="View by category" />
 
     </LinearLayout>

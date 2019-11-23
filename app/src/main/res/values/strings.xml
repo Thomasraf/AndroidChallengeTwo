@@ -2,6 +2,8 @@
     <string name="app_name">BlogPosting</string>
     
     <string-array name="Categories">
-
+        <item>Personal</item>
+        <item>Professional</item>
+        <item>Company</item>
     </string-array>
 </resources>
