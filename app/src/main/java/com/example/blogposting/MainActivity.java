@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void createPost(View view) {
+        Intent intent = new Intent(MainActivity.this, Blog_Create.class);
+        startActivity(intent);
+    }
+
+    public void deletePost(View view) {
+
     }
 }

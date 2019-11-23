@@ -6,21 +6,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class Blog_Create extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private EditText title;
+    private EditText description;
+    private Spinner category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog__create);
 
-        Spinner spinner = findViewById(R.id.dropCategory);
+        category = findViewById(R.id.category);
+        title = findViewById(R.id.title);
+        description = findViewById(R.id.description);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        category.setAdapter(adapter);
+        category.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -32,5 +40,35 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void createPost(View view) {
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = Long.toString(tsLong);
+        //String category, String description, long timestamp, String title
+        Post post = new Post((String)category.getSelectedItem(),description.getText().toString(),ts,title.getText().toString());
+        new Model().addPost(post, new Model.DataStatus() {
+
+            @Override
+            public void DataIsLoaded(List<Post> posts, List<String> keys) {
+
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+        finish();
     }
 }

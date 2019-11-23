@@ -1,44 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Blog_Create">
 
-    <TextView
-        android:id="@+id/appTitle2"
-        android:layout_width="373dp"
-        android:layout_height="match_parent"
-        android:text="Joshy Kun’s  日記"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="190dp"
-        android:layout_height="34dp"
-        android:text="Categories"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="256dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="190dp"
-        android:layout_height="34dp"
-        android:text="Blog Content"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="359dp" />
-
     <LinearLayout
-        android:layout_width="442dp"
-        android:layout_height="116dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#599733"
         android:orientation="vertical">
 
@@ -55,48 +26,51 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="190dp"
-        android:layout_height="34dp"
-        android:text="[TITLE OF BLOG]"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="137dp" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="336dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="193dp" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="343dp"
-        android:layout_height="241dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="[BLOG CONTENTS]"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="402dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="671dp" />
+        android:text="Title of Post"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blog Content"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textSize="24sp" />
 
     <Spinner
-        android:id="@+id/dropCategory"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="84dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="312dp"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="createPost"
+        android:text="Save" />
+
+</LinearLayout>
