@@ -15,6 +15,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -193,6 +194,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewByCategory(View view) {
+        //(1) The RecyclerView is where the recycling will be done. In this case, this has already
+        //    been declared in the activity_main.xml
+        recyclerArea = findViewById(R.id.recyclerArea);
+
+        //(2) The LinearLayoutManager is in-charge of the layout of the RecyclerView
+        manager = new LinearLayoutManager(this);
+        recyclerArea.setLayoutManager(manager);
+        Toast.makeText(context,"Filtering...",Toast.LENGTH_SHORT).show();
+
+        new Model().readPosts(new Model.DataStatus(){
+
+            @Override
+            public void DataIsLoaded(List<Post> posts, List<String> keys) {
+                List<Post> newPosts = new ArrayList<>();
+                for (int i=0; i<categoryFilter.getChildCount();i++){
+                    Chip chip = (Chip)categoryFilter.getChildAt(i);
+                    if (chip.isChecked()){
+                        for(int j = 0; j < posts.size() ; j++){
+                            if(posts.get(j).getCategory().contains(chip.getText())){
+                                if (!newPosts.contains(posts.get(j)))
+                                {
+                                    newPosts.add(posts.get(j));
+                                }
+                            }
+                        }
+                    }
+                }
+                adapter = new PostAdapter((ArrayList) newPosts);
+                recyclerArea.setAdapter(adapter);
+                Toast.makeText(context,"Filtered by category.",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+
 
     }
 }
