@@ -36,7 +36,7 @@ public class Blog_Create_Category extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
 
             }
 

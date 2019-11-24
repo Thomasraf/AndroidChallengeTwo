@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
 
             }
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deletePost(View view) {
-
+        new Model().deletePost((((Button) view).getText().toString()));
     }
 
     public void viewByDateDesc(View view) {
@@ -141,7 +142,75 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+    }
+
+    public void showDelete(View view) {
+        //(1) The RecyclerView is where the recycling will be done. In this case, this has already
+        //    been declared in the activity_main.xml
+        recyclerArea = findViewById(R.id.recyclerArea);
+
+        //(2) The LinearLayoutManager is in-charge of the layout of the RecyclerView
+        manager = new LinearLayoutManager(this);
+        recyclerArea.setLayoutManager(manager);
+
+        new Model().readPosts(new Model.DataStatus(){
+
+            @Override
+            public void DataIsLoaded(List<Post> posts, List<String> keys) {
+                adapter = new PostAdapter((ArrayList) posts, (ArrayList) keys);
+                recyclerArea.setAdapter(adapter);
+            }
+
+            @Override
+            public void DataIsInserted(String key) {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
+    }
+
+    public void hideDelete(View view) {
+        //(1) The RecyclerView is where the recycling will be done. In this case, this has already
+        //    been declared in the activity_main.xml
+        recyclerArea = findViewById(R.id.recyclerArea);
+
+        //(2) The LinearLayoutManager is in-charge of the layout of the RecyclerView
+        manager = new LinearLayoutManager(this);
+        recyclerArea.setLayoutManager(manager);
+
+        new Model().readPosts(new Model.DataStatus(){
+
+            @Override
+            public void DataIsLoaded(List<Post> posts, List<String> keys) {
+                adapter = new PostAdapter((ArrayList) posts);
+                recyclerArea.setAdapter(adapter);
+            }
+
+            @Override
+            public void DataIsInserted(String key) {
 
             }
 
@@ -177,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
 
             }
 
@@ -227,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
 
             }
 

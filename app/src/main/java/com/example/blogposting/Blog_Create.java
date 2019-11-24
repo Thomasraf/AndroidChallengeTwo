@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
@@ -71,7 +72,7 @@ public class Blog_Create extends AppCompatActivity {
                 categoryString += chip.getText().toString() + ";";
             }
         }
-
+        Toast.makeText(this, "Creating post...", Toast.LENGTH_LONG);
         Post post = new Post(categoryString,description.getText().toString(),ts,title.getText().toString());
         new Model().addPost(post, new Model.DataStatus() {
 
@@ -81,7 +82,7 @@ public class Blog_Create extends AppCompatActivity {
             }
 
             @Override
-            public void DataIsInserted() {
+            public void DataIsInserted(String key) {
 
             }
 
@@ -95,6 +96,7 @@ public class Blog_Create extends AppCompatActivity {
 
             }
         });
+
         finish();
     }
 

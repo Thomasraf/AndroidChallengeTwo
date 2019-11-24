@@ -1,6 +1,7 @@
 package com.example.blogposting;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,16 @@ public class PostHolder extends RecyclerView.ViewHolder{
     private TextView desc;
     private TextView category;
     private TextView timestamp;
+    private Button deleteButton;
+
+    public void setDeleteButton(String key) {
+        deleteButton.setText(key);
+    }
+
+    public void disableDeleteButton() {
+        deleteButton.setHeight(0);
+        deleteButton.setEnabled(false);
+    }
 
     public void setTitle(String newTitle) {
         title.setText(newTitle);
@@ -37,6 +48,7 @@ public class PostHolder extends RecyclerView.ViewHolder{
         desc = view.findViewById(R.id.desc);
         category = view.findViewById(R.id.category);
         timestamp = view.findViewById(R.id.timestamp);
+        deleteButton = view.findViewById(R.id.deleteButton);
     }
 
 }

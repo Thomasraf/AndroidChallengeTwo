@@ -1,5 +1,7 @@
 package com.example.blogposting;
 
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,7 +22,7 @@ public class Model {
 
     public interface DataStatus{
         void DataIsLoaded(List<Post> posts, List<String> keys);
-        void DataIsInserted();
+        void DataIsInserted(String key);
         void DataIsUpdated();
         void DataIsDeleted();
     }
@@ -80,32 +82,27 @@ public class Model {
         });
     }
 
-    public void addPost(Post post, final DataStatus dataStatus){
-        String key = mReference.push().getKey();
+    public String addPost(Post post, final DataStatus dataStatus){
+        final String key = mReference.push().getKey();
         mReference.child(key).setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                dataStatus.DataIsInserted();
+                dataStatus.DataIsInserted(key);
             }
         });
+        return key;
     }
 
-    public void deletePost(Post post, final DataStatus dataStatus){
-        String key = mReference.push().getKey();
-        mReference.child(key).setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                dataStatus.DataIsInserted();
-            }
-        });
+    public void deletePost(String key){
+        mReference.child(key).setValue(null);
     }
 
     public void addCategory(Category category, final DataStatus dataStatus){
-        String key = mReferenceCategory.push().getKey();
+        final String key = mReferenceCategory.push().getKey();
         mReferenceCategory.child(key).setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                dataStatus.DataIsInserted();
+                dataStatus.DataIsInserted(key);
             }
         });
     }

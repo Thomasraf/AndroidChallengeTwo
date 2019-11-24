@@ -17,12 +17,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
     //    the views are kept separately and should be managed by the adapter class itself.
     private ArrayList<Post> posts;
 
+    public PostAdapter(ArrayList<Post> posts, ArrayList<String> keys){
+        this.posts = posts;
+        for(int i = 0 ; i < posts.size() ; i++){
+            posts.get(i).setKey(keys.get(i));
+        }
+
+    }
+
     public PostAdapter(ArrayList<Post> posts){
         this.posts = posts;
-
-        //(3) The hard coded entries as shown here illustrate how information can be initially
-        //    populated onto a list. It is also possible to pass information onto the constructor
-        //    which will be used to populate the list.
+        for(int i = 0 ; i < posts.size() ; i++){
+            posts.get(i).setKey(null);
+        }
     }
 
     //(4) The onCreateViewHolder function is used to create the views to be used. This function
@@ -50,6 +57,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostHolder> {
         holder.setDesc(posts.get(position).getDescription());
         holder.setCategory(posts.get(position).getCategory());
         holder.setTimestamp(posts.get(position).getTimestamp());
+        if(posts.get(position).getKey() == null){
+            holder.disableDeleteButton();
+        }else{
+            holder.setDeleteButton(posts.get(position).getKey());
+        }
     }
 
     //(8) As the list of information grows, the adapter's parent functions must be notified of the

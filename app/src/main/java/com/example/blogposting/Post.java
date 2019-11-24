@@ -5,6 +5,7 @@ public class Post implements Comparable{
     private String description;
     private String timestamp;
     private String title;
+    private String key;
 
     public Post() {
 
@@ -23,6 +24,15 @@ public class Post implements Comparable{
         this.timestamp = Long.toString(timestamp);
         this.title = title;
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 
     public String getCategory() {
         return category;
