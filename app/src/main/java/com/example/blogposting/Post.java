@@ -69,10 +69,10 @@ public class Post implements Comparable{
         long compareTs = Long.parseLong(((Post)o).getTimestamp());
 
         /* For Ascending order*/
-        return (int) Math.abs(Long.parseLong(this.timestamp) - compareTs);
+        //return (int) Math.abs(Long.parseLong(this.timestamp) - compareTs);
 
         /* For Descending order do like this */
-        //return compareage-this.studentage;
+        return (int) (compareTs - Math.abs(Long.parseLong(this.timestamp)));
     }
 
 }

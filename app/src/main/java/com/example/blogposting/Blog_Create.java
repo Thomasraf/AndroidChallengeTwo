@@ -2,37 +2,44 @@ package com.example.blogposting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 import java.util.List;
 
-public class Blog_Create extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Blog_Create extends AppCompatActivity {
 
     private EditText title;
     private EditText description;
-    private Spinner category;
-    private String currentItem;
+    private ChipGroup categorySelection;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog__create);
 
-        category = findViewById(R.id.category);
         title = findViewById(R.id.name);
         description = findViewById(R.id.description);
-        final List<String> target = new ArrayList<String>();
+        categorySelection = findViewById(R.id.categories);
+        context = this;
         new Model().readCategories(new Model.DataStatusCategory(){
 
             @Override
             public void DataIsLoaded(List<String> categories, List<String> keys) {
-                target.addAll(categories);
+                for(String categoryName : categories){
+                    Chip chip = new Chip(context);
+                    ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(context, null, 0, R.style.Widget_MaterialComponents_Chip_Choice);
+                    chip.setChipDrawable(chipDrawable);
+                    chip.setCheckable(true);
+                    chip.setText(categoryName);
+                    categorySelection.addView(chip);
+                }
             }
 
             @Override
@@ -50,29 +57,22 @@ public class Blog_Create extends AppCompatActivity implements AdapterView.OnItem
 
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                target);
-        category.setAdapter(adapter);
-        category.setOnItemSelectedListener(this);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        currentItem = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), currentItem, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
     public void createPost(View view) {
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = Long.toString(tsLong);
+        String categoryString = "";
         //String category, String description, long timestamp, String title
-        Post post = new Post(currentItem,description.getText().toString(),ts,title.getText().toString());
+        for (int i=0; i<categorySelection.getChildCount();i++){
+            Chip chip = (Chip)categorySelection.getChildAt(i);
+            if (chip.isChecked()){
+                categoryString += chip.getText().toString() + ";";
+            }
+        }
+
+        Post post = new Post(categoryString,description.getText().toString(),ts,title.getText().toString());
         new Model().addPost(post, new Model.DataStatus() {
 
             @Override
